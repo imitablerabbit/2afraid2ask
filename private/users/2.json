@@ -1,0 +1,17 @@
+{
+	"user_id": 2,
+	"email": "mark@markhillman.info",
+	"password_hash": "",
+	"admin": true, 
+	"email_verified": true,
+	"strikes": 1,
+	"polls": [
+		2
+	],
+	"answers": [
+		{
+			"poll_id": 0,
+			"answer_id": 0
+		}
+	]
+}

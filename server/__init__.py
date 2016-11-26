@@ -7,40 +7,51 @@ import json
 from flask import Flask
 app = Flask(__name__)
 
+
 def get_files_in_dir(dir):
     """get_files_in_dir will return a list of the files that occur within a directory"""
     return [file for file in listdir(dir) if isfile(join(dir, file))]
+
 
 def load_polls(dir="private/polls"):
     """Get polls will load up the polls from the dir. The polls will be returned from this function as a map. The map keys are the different poll ids"""
     files = get_files_in_dir(dir)
     dict = {}
-    for filepath in files:
+    for filename in files:
         poll = {}
-        with open(join(dir, filepath)) as file:
+        filepath = join(dir, filename)
+        with open(filepath) as file:
             try:
                 poll = json.load(file)
             except json.JSONDecodeError:
                 print("Could not decode file {0}".format(filepath))
+            except UnicodeDecodeError:
+                print("Could not decode unicode in {0}".format(filepath))
         id = poll.get("poll_id")
         dict[id] = poll
     return dict
+
 
 def load_users(dir="private/users"):
     """load_users will load up all of the user json files in the dir."""
     files = get_files_in_dir(dir)
     dict = {}
-    for filepath in files:
+    for filename in files:
         user = {}
-        with open(join(dir, filepath)) as file:
+        filepath = join(dir, filename)
+        with open(filepath) as file:
             try:
                 user = json.load(file)
             except json.JSONDecodeError:
                 print("Could not decode file {0}".format(filepath))
+            except UnicodeDecodeError:
+                print("Could not decode unicode in {0}".format(filepath))
         id = user.get("user_id")
         dict[id] = user
     return dict
 
+
+# Load the data from the files
 polls_dict = load_polls()
 users_dict = load_users()
 
