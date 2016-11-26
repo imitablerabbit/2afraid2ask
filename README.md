@@ -8,4 +8,5 @@ A site for polling questions to the internet which people are 2 afraid 2 ask in 
 
 - get rekt
 
+- check if owen can push now
 ## Change log
