@@ -89,7 +89,7 @@ ENV/
 .ropeproject
 
 # Intellij folder
-.idea/**/*
+.idea/
 
 # Linux swp files
 **/*.swp

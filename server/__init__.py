@@ -4,6 +4,8 @@ __init__ is the initialisation for the server, this contains the entry point sta
 from os import listdir
 from os.path import isfile, join
 import json
+import threading
+import jinja2
 from flask import Flask
 app = Flask(__name__)
 
@@ -54,6 +56,15 @@ def load_users(dir="private/users"):
 # Load the data from the files
 polls_dict = load_polls()
 users_dict = load_users()
+polls_lock = threading.Lock()
+users_lock = threading.Lock()
+
+# Load the templating files from a different directory
+my_loader = jinja2.ChoiceLoader([
+    app.jinja_loader,
+    jinja2.FileSystemLoader("private/templates")
+])
+app.jinja_loader = my_loader
 
 # Load the routes in the files below
 import server.users
