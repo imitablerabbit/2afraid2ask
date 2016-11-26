@@ -16,6 +16,24 @@ def check_password_hash(password, password_hash):
     return bcrypt.checkpw(password, password_hash)
 
 
+def is_admin(user_id):
+    """is_admin will return whether the user is an admin and can do the operations that they are trying to access"""
+    users_lock.acquire()
+    user = users_dict.get(user_id)
+    if user:
+        admin = user['admin']
+        if admin:
+            users_lock.release()
+            return True    
+    users_lock.release()
+    return False
+
+
+def is_admin_redirect(user_id):
+    if not is_admin(user_id):
+        return "404 page not found"
+
+
 def create_user(email, password):
     """create_user will add a new user to the users_dict"""
     user = {
@@ -27,7 +45,6 @@ def create_user(email, password):
         'polls': [],
         'answers': []
     }
-    # Acquire lock to stop race condition
     users_lock.acquire()
     user['user_id'] = len(users_dict)
     users_dict[len(users_dict)] = user
@@ -75,6 +92,7 @@ def delete_user(user_id):
 @app.route("/user/delete/<int:user_id>")
 def user_delete(user_id):
     """user_delete will delete the user via the /user/delete/{id} url"""
+    is_admin_redirect()
     deleted = delete_user(user_id)
     if deleted:
         return "User successfully deleted"
