@@ -18,7 +18,10 @@ def load_polls(dir="private/polls"):
     for filepath in files:
         poll = {}
         with open(join(dir, filepath)) as file:
-            poll = json.load(file) 
+            try:
+                poll = json.load(file)
+            except json.JSONDecodeError:
+                print("Could not decode file {0}".format(filepath))
         id = poll.get("poll_id")
         dict[id] = poll
     return dict
@@ -30,7 +33,10 @@ def load_users(dir="private/users"):
     for filepath in files:
         user = {}
         with open(join(dir, filepath)) as file:
-            user = json.load(file)
+            try:
+                user = json.load(file)
+            except json.JSONDecodeError:
+                print("Could not decode file {0}".format(filepath))
         id = user.get("user_id")
         dict[id] = user
     return dict
