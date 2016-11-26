@@ -60,20 +60,20 @@ def user_add():
         if not email:
             print("Incorrect user_add form, missing email.")
             error_string = "Error: Please enter an email"
-            return render_template("add_user.html", error=error_string)
+            return render_template("new_user.html", error=error_string)
         password = form.get('password')
         if not password:
             print("Incorrect user_add form, missing password.")
             error_string = "Please enter a valid password"
-            return render_template("add_user.html", error=error_string)
+            return render_template("new_user.html", error=error_string)
         password = password.encode('utf-8')
         email.encode('utf-8')
         create_user(email, password)
         success_string = "Successfully Added"
-        return render_template("add_user.html", success=success_string)
+        return render_template("new_user.html", success=success_string)
     else: 
         # Todo add the form template here
-        return render_template("add_user.html")
+        return render_template("new_user.html")
 
 
 def delete_user(user_id):
