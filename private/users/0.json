@@ -1,0 +1,17 @@
+{
+	"user_id": 0,
+	"email": "example@email.com",
+	"password_hash": "",
+	"admin": false, 
+	"email_verified": true,
+	"strikes": 0,
+	"polls": [
+		0
+	],
+	"answers": [
+		{
+			"poll_id": 0,
+			"answer_id": 0
+		}
+	]
+}
