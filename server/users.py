@@ -38,12 +38,13 @@ def is_logged_in():
         print(password_hash)
         # Check if cookie is correct according to the sessions
         for session in sessions:
+            print(session)
             if email == session["email"] and password_hash == session["password_hash"] and expires > datetime.now():
                 return True
     return False
 
 
-def is_logged_in_redirect(fn):
+def is_logged_in_redirect():
     if not is_logged_in():
         redirect("/login")
 

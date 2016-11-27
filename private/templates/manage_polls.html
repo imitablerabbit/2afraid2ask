@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<!-- list the polls pased in  -->
+{% if polls %}
+	<ul>
+	{% for poll in polls %}
+		<li>{{poll.question}}
+			<a href=/poll/delete/{{poll.poll_id}}>delete</a>
+			<a href=/poll/edit/{{poll.poll_id}}>edit</a>
+		</li>	
+	{% endfor %}
+	</ul>
+{% endif %}
+
+{% endblock %}
