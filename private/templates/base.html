@@ -17,10 +17,13 @@
     <div class="container-fluid">
         <!-- Collect the nav links, forms, and other content for toggling -->
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">Popular Polls</span></a></li>
+            {% block nav %}
+            <li class="active"><a href="/">Home<span class="sr-only"></span></a></li>
+            <li><a href="#">Popular Polls</a></li>
             <li><a href="#">Live Polls</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="#">My Account</a></li>
+            {% endblock %}
         </ul>
         <div class="navbar-form navbar-right">
             <div class="aa-input-container" id="aa-input-container">
@@ -60,7 +63,7 @@
 {% endblock %}
 {% block footer %}
 <footer class="panel panel-footer  col-sm-12">
-    <p>The full resository for this site can be found
+    <p>The full resository for this site can be found on
     <a href="https://github.com/imitablerabbit/2afraid2ask"> GitHub</a>
     this was created by
     <a href="https://github.com/imitablerabbit">Mark Hillman</a>,
