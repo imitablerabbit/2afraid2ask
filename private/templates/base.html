@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/form.css">
 </head>
 <body>
-{% block titlenav %}gi
+{% block titlenav %}
 <div class="main-title">
     <h1>2afraid2ask</h1>
 </div>
@@ -59,8 +59,18 @@
 <!-- /.row -->
 {% endblock %}
 {% block footer %}
-<footer> THIS IS THE FOOTER</footer>
+<footer class="panel panel-footer  col-sm-12">
+    <p>The full resository for this site can be found
+    <a href="https://github.com/imitablerabbit/2afraid2ask"> GitHub</a>
+    this was created by
+    <a href="https://github.com/imitablerabbit">Mark Hillman</a>,
+    <a href="https://github.com/jemgunay">Jem Gunay</a> and
+    <a href="https://github.com/SpewnBomb">Owen Johnson Davies</a> at the hackathon.
+    <a href="https://hacknotts.devpost.com/">HackNotts</a>
+    </p>
+</footer>
 {% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
