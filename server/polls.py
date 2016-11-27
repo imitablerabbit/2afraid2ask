@@ -111,3 +111,65 @@ def poll_manage():
     polls = get_polls_by_user_id(user["user_id"])
     return render_template("manage_polls.html", polls=polls)
 
+
+@app.route("/poll/report/<int:poll_id>")
+def poll_report(poll_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll:
+        polls_lock.release()
+        return "Poll not found"
+    reports = poll["reports"]
+    reports += 1
+    poll["reports"] = reports
+    polls_dict[poll_id] = poll
+    polls_lock.release()
+    return "Successfully reported"
+
+
+@app.route("/poll/<int:poll_id>/answers/report/<int:answer_id>")
+def poll_answer_report(poll_id, answer_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll: 
+        polls_lock.release()
+        return "poll not found"
+    answers = poll["answers"]
+    answer = answers.get(int(answer_id))
+    if not answer:
+        polls_lock.release()
+        return "answer could not be found"
+    reports = answer["reports"]
+    reports += 1
+    answer["reports"] = reports
+    answers[answer_id] = answer
+    polls_lock.release()
+    return "Successfully reported answer"
+            
+
+@app.route("/poll/<int:poll_id>/answers/new", methods=["POST", "GET"])
+def poll_anwser_new(poll_id):
+    if not is_logged_in():
+        return redirect("/login")
+    if request.method == "POST":
+        form = request.form
+        answer = form.get("answer")
+        if not answer:
+            return "Did not enter an answer value"
+        polls_lock.acquire()
+        poll = polls_dict.get(poll_id)
+        if not poll:
+            polls_lock.release()
+            return "No poll with that id"
+        answers = poll["answers"]
+        user = get_user_by_session()
+        user_id = user["user_id"]
+        answer = {
+            "answer_id": len(answers),
+            "user_id": user_id,
+            "answer": answer,
+            "votes": 0,
+            "reports": 0
+        }
+        user[answers[answer_id]] = answer
+        return "Answer successfully added"

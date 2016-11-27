@@ -3,13 +3,13 @@
 	"user_id": 0,
 	"question": "Do you use your hands to eat fish and chips?",
 	"reports": 0,
-	"answers": [
-		{
+	"answers": {
+		"0": {
 			"answer_id": 0,
 			"answer": "yes",
 			"user_id": 0,
 			"votes": 7,
 			"reports": 0
 		}
-	]
+	}
 }
