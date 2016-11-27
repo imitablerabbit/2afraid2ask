@@ -103,3 +103,15 @@ def poll_manage():
     polls = get_polls_by_user_id(user["user_id"])
     return render_template("manage_polls.html", polls=polls)
 
+
+@app.route("/poll/report/<int:poll_id>")
+def poll_report(poll_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    reports = poll["reports"]
+    reports += 1
+    poll["reports"] = reports
+    polls_dict[poll_id] = poll
+    polls_lock.release()
+    return "Successfully reported"
+
