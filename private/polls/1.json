@@ -4,14 +4,14 @@
 	"question": "Do you put a comma after etc.?",
 	"reports": 0,
 	"answers": {
-		0: {
+		"0": {
 			"answer_id": 0,
 			"answer": "yes",
 			"user_id": 0,
 			"votes": 7,
 			"reports": 0
 		},
-		1: {
+		"1": {
 			"answer_id": 1,
 			"answer": "no",
 			"user_id": 1,
