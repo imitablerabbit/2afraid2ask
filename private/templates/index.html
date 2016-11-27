@@ -18,7 +18,7 @@
     {% if poll.answers %}
 
     <div class="panel panel-default col-sm-offset-1  col-sm-10">
-        <h3 class="row col-sm-offset-1">Answers </h3>
+        <h3 class="row col-sm-offset-1">Answers: </h3>
         {% for key, answer in poll.answers.items() %}
         <div class="row col-sm-offset-2" style="margin-bottom: 5px">
             <div style=" margin : 0 ; align-vertical : center" class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>

@@ -13,7 +13,7 @@
     {% if poll.answers %}
 
     <div class="panel panel-default col-sm-offset-1  col-sm-10">
-        <h3 class="row col-sm-offset-1">Answers </h3>
+        <h3 class="row col-sm-offset-1">Answers:</h3>
         {% for key, answer in poll.answers.items() %}
         <div class="row col-sm-offset-2" style="margin-bottom: 5px">
             <div style=" margin : 0 ; align-vertical : center" class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
@@ -22,8 +22,8 @@
                class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
         </div>
         {% endfor %}
-        <form method="POST" action = "/poll/{{poll.poll_id}}/answers/new" class="form-horizontal">
-            <div class="row" style=" padding-bottom : 20px">
+        <form method="POST" action = "/poll/{{poll.poll_id}}/answers/new" class="form-horizontal" style="margin: 20px; display:block">
+            <div class="row" style=" padding: 20px; margin: 10px;">
                 <label class="control-label col-sm-2">Your answer:</label>
                 <input  style=" margin-right : 20px" class="col-sm-7"name="answer" id="answer" type="text" placeholder="Got a better idea?"></input>
                 <input class="col-sm-2" type="submit" value="Submit">
