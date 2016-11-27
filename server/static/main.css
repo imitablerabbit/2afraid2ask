@@ -1,11 +1,14 @@
 .main-title {
-  padding-top: 35px;
-  padding-bottom: 35px;
+  padding-bottom: 5px;
 }
 
 h1 {
   font-size: 65px;
   text-align: center;
+}
+
+h2{
+    text-align: center;
 }
 
 .search-container {
@@ -24,3 +27,5 @@ h1 {
 .navbar-nav > li > a {
     padding: 20px 20px;
 }
+
+

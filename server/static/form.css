@@ -1,0 +1,10 @@
+input {
+    width: 100%;
+    clear: right;
+}
+
+#loginwrapper{
+    padding-top: 20px;
+    background-colour: black;
+    text-align: center;
+}

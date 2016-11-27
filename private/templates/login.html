@@ -2,13 +2,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Login</h1>
-<form method="POST">
+<h2>Login</h2>
+<div id="loginwrapper">
+<form method="POST" >
 	<label for=email>Email:</label>
 	<input id=email name=email type=email></input>
 	<label for=password>Password:</label>
 	<input id=password name=password type=password></input>
 	<input type="submit" value="Login">
 </form>
-
+</div>
 {% endblock %}
