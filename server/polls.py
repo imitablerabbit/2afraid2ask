@@ -164,12 +164,14 @@ def poll_anwser_new(poll_id):
         answers = poll["answers"]
         user = get_user_by_session()
         user_id = user["user_id"]
+        answer_id = len(answers)
         answer = {
-            "answer_id": len(answers),
+            "answer_id": answer_id,
             "user_id": user_id,
             "answer": answer,
             "votes": 0,
             "reports": 0
         }
-        user[answers[answer_id]] = answer
+        answers[answer_id] = answer
+        user["answers"] = answers
         return "Answer successfully added"

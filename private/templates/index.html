@@ -28,10 +28,10 @@
                class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
         </div>
         {% endfor %}
-        <form method="POST" class="form-horizontal">
+        <form method="POST" action = "/poll/{{poll.poll_id}}/answers/new" class="form-horizontal">
             <div class="row">
                 <label class="control-label col-sm-2">Your answer:</label>
-                <input class="col-sm-7" id="new-answer" type="text" placeholder="Got a better idea?"></input>
+                <input class="col-sm-7"name="answer" id="answer" type="text" placeholder="Got a better idea?"></input>
                 <input class="col-sm-2" type="submit" value="Submit">
             </div>
 
