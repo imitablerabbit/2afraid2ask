@@ -10,9 +10,9 @@
 {% if poll.question %}
 <div class="panel panel-default col-sm-offset-1  col-sm-10">
     <h2>Question:</h2>
-    <div class="row">
-        <h2>{{poll.question}}</h2>
-        <a type="button" href="/poll/report/{{poll.poll_id}}"
+    <div class="row" style=" margin : auto">
+        <h2 style=" margin : auto ; text-align : center">{{poll.question}}</h2>
+        <a type="button" href="/poll/report/{{poll.poll_id}}" style=" margin : 0 ; display: inline-block ; text-align : center"
            class=" col-sm-offset-9 btn btn-danger btn-sm glyphicon glyphicon-remove ">REPORT</a>
     </div>
 
@@ -21,17 +21,17 @@
     <div class="panel panel-default col-sm-offset-1  col-sm-10">
         <h3 class="row col-sm-offset-1">Answers </h3>
         {% for key, answer in poll.answers.items() %}
-        <div class="row col-sm-offset-2">
-            <div class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
-            <a type="button" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
-            <a type="button" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}"
+        <div class="row col-sm-offset-2" style="margin-bottom: 5px">
+            <div style=" margin : 0 ; align-vertical : center" class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
+            <a type="button" href="" style=" margin : 0" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
+            <a type="button" style=" margin : 0" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}"
                class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
         </div>
         {% endfor %}
         <form method="POST" action = "/poll/{{poll.poll_id}}/answers/new" class="form-horizontal">
-            <div class="row">
+            <div class="row" style=" padding-bottom : 20px">
                 <label class="control-label col-sm-2">Your answer:</label>
-                <input class="col-sm-7"name="answer" id="answer" type="text" placeholder="Got a better idea?"></input>
+                <input  style=" margin-right : 20px" class="col-sm-7"name="answer" id="answer" type="text" placeholder="Got a better idea?"></input>
                 <input class="col-sm-2" type="submit" value="Submit">
             </div>
 
