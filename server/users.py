@@ -203,4 +203,17 @@ def user_make_admin(user_id):
     return "User successfully updated to admin"
 
 
-    
+@app.route("/logout")
+def user_logout():
+    if not is_logged_in():
+        return "Not logged in"
+    # remove sessions
+    user = get_user_by_session()
+    sessions_lock.acquire()
+    for session in sessions:
+        if session["email"] == user["email"]:
+            sessions.remove(session)
+            break
+    return "Logged out"
+
+        
