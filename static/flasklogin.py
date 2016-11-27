@@ -49,7 +49,7 @@ def home():
     }
     polls = {0: poll ,1: poll1}
 
-    return render_template('welcome.html',
+    return render_template('index.html',
                            user = users,
                            polls = polls
                            )
