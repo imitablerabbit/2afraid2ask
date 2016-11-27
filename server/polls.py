@@ -3,7 +3,7 @@ polls.py is the part of the server which controls the poll files. This includes 
 """
 from server import app, polls_dict, users_dict, users_lock, polls_lock
 from server.users import is_logged_in, get_user_by_session, is_admin
-
+from server.search import create_poll, delete_poll, update_question
 from flask import request, render_template, redirect
 
 
@@ -42,6 +42,7 @@ def poll_new():
             "reports": 0,
             "answers": []
         }
+        
         polls_dict[poll_id] = poll
         polls_lock.release()
         polls = user["polls"]
@@ -50,6 +51,9 @@ def poll_new():
         user["polls"] = polls # might be redundant?
         users_dict[user["user_id"]] = user
         users_lock.release()
+		  
+        # push to search db
+        create_poll(poll)
         return "Successfully created poll"
     return render_template("new_poll.html") 
 
@@ -69,6 +73,9 @@ def poll_delete(poll_id):
     if is_admin() or poll["user_id"] == user["user_id"]:
         del polls_dict[poll_id]
         polls_lock.release()
+        # push to search db
+        delete_poll(poll_id)
+
         return "Poll successfully deleted"
 
 
@@ -88,6 +95,7 @@ def poll_edit(poll_id):
         poll["question"] = question
         polls_dict[poll_id] = poll
         polls_lock.release()
+        update_question(poll_id, question)
         return "Successfully updated poll"
     polls_lock.release()
     return render_template("poll_edit.html", poll=poll)
@@ -165,5 +173,25 @@ def poll_anwser_new(poll_id):
             "reports": 0
         }
         answers[answer_id] = answer
-        user["answers"] = answers
+        poll["answers"] = answers
+        polls_dict[poll_id] = poll
+        polls_lock.release()
+        answer = {
+            "poll_id": poll_id,
+            "answer_id": answer_id
+        }
+        users_lock.acquire()
+        user["answers"].append(answer)
+        users_dict[user_id] = user
+        users_lock.release()
         return "Answer successfully added"
+
+
+@app.route("/poll/<int:poll_id>")
+def poll_single(poll_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll:
+        polls_lock.release()
+        return "Could not find the poll"
+    return render_template("poll.html", poll=poll)
