@@ -6,6 +6,8 @@ from flask import request, render_template, redirect, Response, make_response
 import bcrypt
 from datetime import datetime, timedelta
 
+datetime_format = "%Y-%m-%d %H:%M:%S.%f"
+
 
 def hash_password(password):
     """hash_password returns a bcrypted password_hash"""
@@ -34,24 +36,33 @@ def get_user_by_email(email):
 def is_logged_in():
     if 'session' in request.cookies:
         email, password_hash = get_session_cookie_details(request.cookies["session"])
-        print(email)
-        print(password_hash)
         # Check if cookie is correct according to the sessions
+        print("Sessions", sessions)
+        print("Password_hash:", password_hash)
+        print("Email:", email)
         for session in sessions:
-            if email == session["email"] and password_hash == session["password_hash"] and expires > datetime.now():
-                return True
+            print(session['expires'])
+            expires = datetime.strptime(session["expires"], datetime_format)
+            now = datetime.now()
+            if not email == session["email"]:
+                print("Wrong email")
+                return False                
+            if not password_hash == session["password_hash"]:
+                print("Wrong password")
+                return False
+            if not expires > now:
+                print("Already expired")
+                return False
+            return True
     return False
-
-
-def is_logged_in_redirect(fn):
-    if not is_logged_in():
-        redirect("/login")
 
 
 def get_session_cookie_details(cookie):
     session_cookie = request.cookies["session"]
-    password_hash = session_cookie[:-60]
+    password_hash = session_cookie[-60:]
     email = session_cookie[:len(session_cookie)-60]
+    print(password_hash)
+    print(email)
     return email, password_hash
 
 
@@ -134,7 +145,7 @@ def user_login():
         session = {
             'email': email,
             'password_hash': password_hash,
-            'expires': expires 
+            'expires': expires.strftime(datetime_format) 
         }
         # remove previous sessions for that email
         sessions_lock.acquire()
@@ -179,7 +190,8 @@ def user_add():
 @app.route("/user/delete/<int:user_id>")
 def user_delete(user_id):
     """user_delete will delete the user via the /user/delete/{id} url"""
-    is_logged_in_redirect()
+    if not is_logged_in():
+        return redirect("/login")
     is_admin_redirect()
     deleted = delete_user(user_id)
     if deleted:
@@ -190,7 +202,8 @@ def user_delete(user_id):
 
 @app.route("/user/<int:user_id>/make_admin")
 def user_make_admin(user_id):
-    is_logged_in_redirect()
+    if not is_logged_in():
+        return redirect("/login")
     if not is_admin(get_user_by_session()):
         return "404 page not found"
     user_login.acquire()
