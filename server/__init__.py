@@ -53,11 +53,25 @@ def load_users(dir="private/users"):
     return dict
 
 
+def load_sessions(filepath="private/sessions.json"):
+    sessions = []
+    with open(filepath) as file:
+        try:
+            sessions = json.load(file)
+        except json.JSONDecodeError:
+            print("Could not decode file {0}".format(filepath))
+        except UnicodeDecodeError:
+            print("Could not decode unicode in {0}".format(filepath))
+    return sessions
+
+
 # Load the data from the files
 polls_dict = load_polls()
 users_dict = load_users()
 polls_lock = threading.Lock()
 users_lock = threading.Lock()
+sessions = load_sessions()
+sessions_lock = threading.Lock()
 
 # Load the templating files from a different directory
 my_loader = jinja2.ChoiceLoader([
