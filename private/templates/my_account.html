@@ -1,0 +1,22 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block titlenav %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+{% if user %}
+
+<div class="panel panel-default col-sm-offset-1  col-sm-10">
+    <h2>Email:</h2>
+    <h2>{{user.email}}</h2>
+    <hr>
+    <h2>Number of strikes:</h2>
+    <h2>{{user.strikes}}</h2>
+    
+</div>
+{% endif %}
+
+
+{% endblock %}
+
+
