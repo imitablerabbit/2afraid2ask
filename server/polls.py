@@ -164,5 +164,6 @@ def poll_anwser_new(poll_id):
             "votes": 0,
             "reports": 0
         }
-        user[answers[answer_id]] = answer
+        answers[answer_id] = answer
+        user["answers"] = answers
         return "Answer successfully added"
