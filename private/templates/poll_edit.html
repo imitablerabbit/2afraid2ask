@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+
+<form method=POST>
+	<label for=question>Question:</label>
+	<input type=test id=question name=question>
+		{% if poll %}{{poll.question}}{% endif %}
+	</input>
+	<input type=submit></input>
+</form>
+
+{% endblock %}

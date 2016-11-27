@@ -71,6 +71,27 @@ def poll_delete(poll_id):
         return "Poll successfully deleted"
 
 
+@app.route("/poll/edit/<int:poll_id>", methods=["POST", "GET"])
+def poll_edit(poll_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll:
+        return "The poll was not found"
+    if request.method == "POST":
+        if not is_logged_in():
+            return redirect("/login")
+        form = request.form
+        question= form.get("question")
+        if not question:
+            return "The edited poll did not update the question"
+        poll["question"] = question
+        polls_dict[poll_id] = poll
+        polls_lock.release()
+        return "Successfully updated poll"
+    polls_lock.release()
+    return render_template("poll_edit.html", poll)
+
+
 @app.route("/poll/delete")
 @app.route("/poll/edit")
 def poll_manage():
