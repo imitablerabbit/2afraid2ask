@@ -4,12 +4,24 @@
 
 <h2>Login</h2>
 <div id="loginwrapper">
-<form method="POST" >
-	<label for=email>Email:</label>
-	<input id=email name=email type=email></input>
-	<label for=password>Password:</label>
-	<input id=password name=password type=password></input>
-	<input type="submit" value="Login">
+<form method="POST" class="form-horizontal" >
+	<div class="form-group">
+	<label class="control-label col-sm-5"  for=email>Email:</label>
+	<div class="col-sm-6">
+	<input id=email name=email type=email placeholder="Enter email"></input>
+		</div>
+	</div>
+	<div class="form-group">
+	<label class="control-label col-sm-5" for=password>Password:</label>
+	<div class="col-sm-6">
+	<input id=password name=password type=password placeholder="Enter Password"></input>
+		</div>
+	</div>
+	 <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-2">
+	<input type="submit" value="Login" >
+		 </div>
+  </div>
 </form>
 </div>
 {% endblock %}

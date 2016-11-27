@@ -4,35 +4,47 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
-<h1>2afraid2ask</h1>
-{% if user.name %}
-  <h4>Hello, {{ user.name }}!</h4>
-{% else %}
-  <h4>Hello</h4>
-{% endif %}
-
 {% if polls %}
 
-    {% for id, poll in polls.items() %}
-        {% if poll.question %}
-            <h2>question: {{poll.question}}</h2>
-                {% if poll.answers %}
-                    <h3>answers </h3>
-                    <ul>
-                    {% for answer in poll.answers %}
-                        <li>{{answer.answer}}({{answer.votes}})</li>
-                    {% endfor %}
-                    </ul>
-                    {% else %}
-                     <h2>no answers yet</h2>
-                {% endif %}
-        {% else %}
-            <p>There are no questions</p>
-        {% endif %}
-    {%endfor%}
-{%else%}
-    <h2>no polls yet</h2>
+{% for id, poll in polls.items() %}
+{% if poll.question %}
+<div class="panel panel-default col-sm-offset-1  col-sm-10">
+    <h2>Question:</h2>
+    <h2>{{poll.question}}</h2>
+    {% if poll.answers %}
+
+    <div class="panel panel-default col-sm-offset-1  col-sm-10">
+        <h3 class="row col-sm-offset-1">Answers </h3>
+        {% for answer in poll.answers %}
+        <div class="row col-sm-offset-2">
+            <div class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
+            <a type="button" class="btn btn-success  btn-sm glyphicon glyphicon-plus navbar-btn "></a>
+            <a type="button" class=" col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">
+                REPORT</a>
+        </div>
+        {% endfor %}
+        <form method="POST" class="form-horizontal">
+            <div class="row">
+                <label class="control-label col-sm-2">Your answer:</label>
+                <input class="col-sm-7" id="new-answer" type="text" placeholder="Got a better idea?"></input>
+                <input class="col-sm-2" type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% else %}
+<h2>no answers yet</h2>
 {% endif %}
+{% else %}
+<p>There are no questions</p>
+{% endif %}
+{%endfor%}
+{%else%}
+<h2>no polls yet</h2>
+{% endif %}
+
 
 {% endblock %}
 

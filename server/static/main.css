@@ -8,7 +8,8 @@ h1 {
 }
 
 h2{
-    text-align: center;
+    text-align: left;
+    float: left;
 }
 
 .search-container {
@@ -27,5 +28,4 @@ h2{
 .navbar-nav > li > a {
     padding: 20px 20px;
 }
-
 
