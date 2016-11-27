@@ -28,9 +28,9 @@ def update_question(poll_id, new_question):
 def delete_poll(poll_id):
 	index.delete_by_query(poll_id, {"restrictSearchableAttributes": "poll_id"})
 
-
+''' test function calls '''
 #print(get_question_matches("hands"))
 #test_poll_object = json.load(open('2afraid2ask/private/polls/0.json'))
 #create_poll(test_poll_object)
-update_question("1", "Do you use chips and fish to eat your hands?")
+#update_question("1", "Do you use chips and fish to eat your hands?")
 #delete_poll("0")
