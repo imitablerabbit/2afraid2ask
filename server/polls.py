@@ -164,7 +164,7 @@ def poll_anwser_new(poll_id):
             "votes": 0,
             "reports": 0
         }
-        answers[answer_id] = answer
+        answers[str(answer_id)] = answer
         poll["answers"] = answers
         polls_dict[poll_id] = poll
         polls_lock.release()
@@ -187,3 +187,25 @@ def poll_single(poll_id):
         polls_lock.release()
         return "Could not find the poll"
     return render_template("poll.html", poll=poll)
+
+
+@app.route("/polls/<int:poll_id>/answers/<int:answer_id>/vote")
+def poll_answer_vote(poll_id, answer_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll:
+        polls_lock.release()
+        return "Could not find poll"
+    answers = poll["answers"]
+    answer = answers.get(str(answer_id))
+    if not answer:
+        polls_lock.release()
+        return "Could not find answer"
+    votes = answer["votes"]
+    votes += 1
+    answer["votes"] = votes
+    answers[str(answer_id)] = answer
+    poll["answers"] = answers
+    polls_dict[poll_id] = poll
+    polls_lock.release()
+    return "Vote successful"

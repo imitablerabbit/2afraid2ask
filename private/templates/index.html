@@ -9,11 +9,10 @@
 {% for id, poll in polls.items() %}
 {% if poll.question %}
 <div class="panel panel-default col-sm-offset-1  col-sm-10">
-    <h2>Question:</h2>
+	<h2 style="display: inline; float: left">Question:</h2>
+    <a type="button" href="/poll/report/{{poll.poll_id}}" style="display: inline; float: right; margin:10px; " class=" col-sm-offset-9 btn btn-danger btn-sm glyphicon glyphicon-remove ">REPORT</a>
     <div class="row" style=" margin : auto">
-        <h2 style=" margin : auto ; text-align : center">{{poll.question}}</h2>
-        <a type="button" href="/poll/report/{{poll.poll_id}}" style=" margin : 0 ; display: inline-block ; text-align : center"
-           class=" col-sm-offset-9 btn btn-danger btn-sm glyphicon glyphicon-remove ">REPORT</a>
+        <h2 style=" margin:20px;text-align:center; clear: both ">{{poll.question}}</h2>
     </div>
 
     {% if poll.answers %}
@@ -23,7 +22,7 @@
         {% for key, answer in poll.answers.items() %}
         <div class="row col-sm-offset-2" style="margin-bottom: 5px">
             <div style=" margin : 0 ; align-vertical : center" class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
-            <a type="button" href="" style=" margin : 0" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
+            <a type="button" href="/polls/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote" style=" margin : 0" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
             <a type="button" style=" margin : 0" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}"
                class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
         </div>
