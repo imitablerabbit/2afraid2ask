@@ -229,4 +229,13 @@ def user_logout():
             break
     return "Logged out"
 
+
+@app.route("/my_account")
+def user_account():
+    if not is_logged_in():
+        return redirect("/login")
+    user = get_user_by_session()
+    return render_template("my_account.html", user=user)
+
+
         
