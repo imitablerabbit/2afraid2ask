@@ -10,17 +10,22 @@
 {% if poll.question %}
 <div class="panel panel-default col-sm-offset-1  col-sm-10">
     <h2>Question:</h2>
-    <h2>{{poll.question}}</h2>
+    <div class="row">
+        <h2>{{poll.question}}</h2>
+        <a type="button" href="/poll/report/{{poll.poll_id}}"
+           class=" col-sm-offset-9 btn btn-danger btn-sm glyphicon glyphicon-remove ">REPORT</a>
+    </div>
+
     {% if poll.answers %}
 
     <div class="panel panel-default col-sm-offset-1  col-sm-10">
         <h3 class="row col-sm-offset-1">Answers </h3>
-        {% for answer in poll.answers %}
+        {% for key, answer in poll.answers.items() %}
         <div class="row col-sm-offset-2">
             <div class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
-            <a type="button" class="btn btn-success  btn-sm glyphicon glyphicon-plus navbar-btn "></a>
-            <a type="button" class=" col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">
-                REPORT</a>
+            <a type="button" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
+            <a type="button" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}"
+               class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
         </div>
         {% endfor %}
         <form method="POST" class="form-horizontal">
