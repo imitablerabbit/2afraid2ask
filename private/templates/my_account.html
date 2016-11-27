@@ -1,0 +1,49 @@
+<!doctype html>
+{% extends "base.html" %}
+{% block titlenav %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+{% if user %}
+
+<div class="panel panel-default col-sm-offset-1  col-sm-10">
+    <h2>Email:</h2>
+    <h2>{{user.email}}</h2>
+    {% if user.answers %}
+
+    <div class="panel panel-default col-sm-offset-1  col-sm-10">
+        <h3 class="row col-sm-offset-1">Answers </h3>
+        {% for answer in user.answers %}
+        <div class="row col-sm-offset-2">
+            <div class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
+            <a type="button" class="btn btn-success  btn-sm glyphicon glyphicon-plus navbar-btn "></a>
+            <a type="button" class=" col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">
+                REPORT</a>
+        </div>
+        {% endfor %}
+        <form method="POST" class="form-horizontal">
+            <div class="row">
+                <label class="control-label col-sm-2">Your answer:</label>
+                <input class="col-sm-7" id="new-answer" type="text" placeholder="Got a better idea?"></input>
+                <input class="col-sm-2" type="submit" value="Submit">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% else %}
+<h2>no answers yet</h2>
+{% endif %}
+{% else %}
+<p>There are no questions</p>
+{% endif %}
+{%endfor%}
+{%else%}
+<h2>no polls yet</h2>
+{% endif %}
+
+
+{% endblock %}
+
+
