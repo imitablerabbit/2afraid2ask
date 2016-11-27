@@ -165,5 +165,25 @@ def poll_anwser_new(poll_id):
             "reports": 0
         }
         answers[answer_id] = answer
-        user["answers"] = answers
+        poll["answers"] = answers
+        polls_dict[poll_id] = poll
+        polls_lock.release()
+        answer = {
+            "poll_id": poll_id,
+            "answer_id": answer_id
+        }
+        users_lock.acquire()
+        user["answers"].append(answer)
+        users_dict[user_id] = user
+        users_lock.release()
         return "Answer successfully added"
+
+
+@app.route("/poll/<int:poll_id>")
+def poll_single(poll_id):
+    polls_lock.acquire()
+    poll = polls_dict.get(poll_id)
+    if not poll:
+        polls_lock.release()
+        return "Could not find the poll"
+    return render_template("poll.html", poll=poll)

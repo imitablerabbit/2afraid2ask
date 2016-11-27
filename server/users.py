@@ -26,7 +26,8 @@ def get_user_by_email(email):
     # loop over the users
     users_lock.acquire()
     for key, user in users_dict.items():
-        if user["email"] == email:
+        user_email = user.get("email")
+        if user_email and user_email == email:
             users_lock.release()
             return user
     users_lock.release()
