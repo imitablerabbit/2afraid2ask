@@ -37,7 +37,10 @@
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container-fluid -->
-    </nav>
+        </nav>
+
+    {% endblock %}
+    {% block content %}
     <div class="row">
       <div class="col-lg-12 ask-bar">
         <div class="input-group">
@@ -51,8 +54,7 @@
       <!-- /.col-lg-6 -->
     </div>
     <!-- /.row -->
-    {% endblock %}
-    {% block content %}{% endblock %}
+  {% endblock %}
     {% block footer %}
     <footer> THIS IS THE FOOTER</footer>
     {% endblock %}
