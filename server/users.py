@@ -31,6 +31,36 @@ def get_user_by_email(email):
     return None
 
 
+def is_logged_in():
+    if 'session' in request.cookies:
+        email, password_hash = get_session_cookie_details(request.cookies["session"])
+        print(email)
+        print(password_hash)
+        # Check if cookie is correct according to the sessions
+        for session in sessions:
+            if email == session["email"] and password_hash == session["password_hash"] and expires > datetime.now():
+                return True
+    return False
+
+
+def is_logged_in_redirect(fn):
+    if not is_logged_in():
+        redirect("/login")
+
+
+def get_session_cookie_details(cookie):
+    session_cookie = request.cookies["session"]
+    password_hash = session_cookie[:-60]
+    email = session_cookie[:len(session_cookie)-60]
+    return email, password_hash
+
+
+def get_user_by_session():
+    if 'session' in request.cookies:
+        email, password_hash = get_session_cookie_details(request.cookies["session"])
+        return get_user_by_email(email)
+
+
 def is_admin(user_id):
     """is_admin will return whether the user is an admin and can do the operations that they are trying to access"""
     users_lock.acquire()
@@ -79,6 +109,7 @@ def delete_user(user_id):
         return False
 
 
+# Routing takes place from here onwards
 @app.route("/login", methods=["GET", "POST"])
 def user_login():
     """user_login will log the user in and create a cookie for the whole of the site. This method will check the authentification credentials entered by the user"""
@@ -148,9 +179,28 @@ def user_add():
 @app.route("/user/delete/<int:user_id>")
 def user_delete(user_id):
     """user_delete will delete the user via the /user/delete/{id} url"""
+    is_logged_in_redirect()
     is_admin_redirect()
     deleted = delete_user(user_id)
     if deleted:
         return "User successfully deleted"
     else:
         return "User does not exist"
+
+
+@app.route("/user/<int:user_id>/make_admin")
+def user_make_admin(user_id):
+    is_logged_in_redirect()
+    if not is_admin(get_user_by_session()):
+        return "404 page not found"
+    user_login.acquire()
+    user = users_dict.get(user_id)
+    if not user:
+        users_lock.release()
+        return "User not found"
+    user["admin"] = True
+    users_lock.release()
+    return "User successfully updated to admin"
+
+
+    

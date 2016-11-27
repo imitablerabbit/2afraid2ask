@@ -4,7 +4,6 @@
 {{ super() }}
 {% endblock %}
 {% block content %}
-<title>2afraid2ask</title>
 <h1>2afraid2ask</h1>
 {% if user.name %}
   <h4>Hello, {{ user.name }}!</h4>
@@ -13,23 +12,27 @@
 {% endif %}
 
 {% if polls %}
-    {% for polls.poll_id, poll in polls.items() %}
-<br>
-    <h2>question: <br>{{   poll.question}}</h2>
-        {% if poll.answers %}
-            <h3>answers </h3>
-            <ul>
-            {% for objects in poll.answers %}
-                <li>{{objects.answer}}({{objects.votes}})</li>
-            {% endfor %}
-            </ul>
-            {% else %}
-             <h2>no answers yet</h2>
+
+    {% for id, poll in polls.items() %}
+        {% if poll.question %}
+            <h2>question: {{poll.question}}</h2>
+                {% if poll.answers %}
+                    <h3>answers </h3>
+                    <ul>
+                    {% for answer in poll.answers %}
+                        {{answer}}
+                        <li>{{poll.answers}}({{poll.answers.votes}})</li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                     <h2>no answers yet</h2>
+                {% endif %}
+        {% else %}
+            <p>There are no questions</p>
         {% endif %}
     {%endfor%}
 {%else%}
     <h2>no polls yet</h2>
-
 {% endif %}
 
 {% endblock %}
