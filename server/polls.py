@@ -1,8 +1,8 @@
 """
 polls.py is the part of the server which controls the poll files. This includes creation, deletion, editing
 """
-from server import app, polls_dict, polls_lock
-from server.users import is_logged_in, get_user_by_session
+from server import app, polls_dict, users_dict, users_lock, polls_lock
+from server.users import is_logged_in, get_user_by_session, is_admin
 
 from flask import request, render_template, redirect
 
@@ -46,6 +46,7 @@ def poll_new():
         polls_lock.release()
         polls = user["polls"]
         polls.append(poll_id)
+        users_lock.acquire()
         user["polls"] = polls # might be redundant?
         users_dict[user["user_id"]] = user
         users_lock.release()
@@ -60,7 +61,7 @@ def poll_delete(poll_id):
         return redirect("/login")
     user = get_user_by_session()
     polls_lock.acquire()
-    poll = polls_dict.get("poll_id")
+    poll = polls_dict.get(poll_id)
     if not poll:
         polls_lock.release()
         return "No poll with that id"
@@ -89,7 +90,7 @@ def poll_edit(poll_id):
         polls_lock.release()
         return "Successfully updated poll"
     polls_lock.release()
-    return render_template("poll_edit.html", poll)
+    return render_template("poll_edit.html", poll=poll)
 
 
 @app.route("/poll/delete")
