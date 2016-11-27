@@ -1,0 +1,22 @@
+.main-title {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+h1 {
+  font-size: 65px;
+  text-align: center;
+}
+
+.search-container {
+  padding-top: 115px;
+  padding-right: 20px;
+  float: right;
+  text-align: right;
+  text-align: bottom;
+}
+
+.ask-bar {
+  padding-left: 30px;
+  padding-right: 30px;
+}
