@@ -1,0 +1,24 @@
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    box-sizing: border-box;
+    display: inline-block;
+    border: solid thin black;
+    padding: 5px;
+    margin: 0px;
+}
+
+input[type=submit],
+input[type=button] {
+    background: white;
+}
+
+input[type=submit]:hover,
+input[type=button]:hover {
+    background: black;
+    cursor: pointer;
+    color: white;
+}

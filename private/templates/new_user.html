@@ -1,20 +1,21 @@
-<!DOCTYPE html>
 {% extends "base.html" %}
+
 {% block content %}
+    <form method=POST>
+        <label for=email>Email:</label>
+        <input id=email name=email type=email></input>
 
-<form method=POST>
-	<label for=email>Email:</label>
-	<input id=email name=email type=email></input>
-	<label for=password>Password:</label>
-	<input id=password name=password type=password></input>
-	<input type=submit></input>
-</form>
+        <label for=password>Password:</label>
+        <input id=password name=password type=password></input>
 
-{% if success %}
-<p><strong>Success:</strong> {{ success }}</p>
-{% endif %}
-{% if error %}
-<p><strong>Error:</strong> {{ error }} </p>
-{% endif %}
+        <input type=submit></input>
+    </form>
 
+    {% if success %}
+    <p><strong>Success:</strong> {{ success }}</p>
+    {% endif %}
+
+    {% if error %}
+    <p><strong>Error:</strong> {{ error }} </p>
+    {% endif %}
 {% endblock %}

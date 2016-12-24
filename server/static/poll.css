@@ -1,0 +1,52 @@
+.poll-block {
+    width: 50%;
+    margin: 0px;
+    padding: 20px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.poll-answers {
+}
+
+.poll-answer {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: thin dotted black;
+}
+
+.poll-answer p {
+    display: inline-block;
+    width: 50%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.poll-answer .buttons {
+    display: inline-block;
+    width: 50%;
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+}
+
+.poll-form {
+    width: 100%;
+    padding: 10px 0px;
+    display: inline-block;
+    margin: 0px;
+}
+
+.poll-form input[type=text] {
+    width: 80%;
+    margin: 0px;
+}
+
+.poll-form input[type=submit] {
+    width: 20%;
+    margin: 0px;
+    border-left: none;
+}
+

@@ -1,19 +1,15 @@
-<!doctype html>
 {% extends "base.html" %}
+
 {% block content %}
 {% if user %}
+    <div>
+        <h1>Email:</h1>
+        <p>{{user.email}}</p>
 
-<div class="panel panel-default col-sm-offset-1  col-sm-10">
-    <h2>Email:</h2>
-    <h2>{{user.email}}</h2>
-    <hr>
-    <h2>Number of strikes:</h2>
-    <h2>{{user.strikes}}</h2>
-    
-</div>
+        <h1>Number of strikes:</h1>
+        <p>{{user.strikes}}</p>        
+    </div>
 {% endif %}
-
-
 {% endblock %}
 
 

@@ -1,52 +1,5 @@
-<!doctype html>
 {% extends "base.html" %}
+
 {% block content %}
-{% if polls %}
-
-{% for id, poll in polls.items() %}
-{% if poll.question %}
-<div class="panel panel-default col-sm-offset-1  col-sm-10">
-	<h2 style="display: inline; float: left">Question:</h2>
-    <a type="button" href="/poll/report/{{poll.poll_id}}" style="display: inline; float: right; margin:10px; " class=" col-sm-offset-9 btn btn-danger btn-sm glyphicon glyphicon-remove ">REPORT</a>
-    <div class="row" style=" margin : auto">
-        <h2 style=" margin:20px;text-align:center; clear: both ">{{poll.question}}</h2>
-    </div>
-
-    {% if poll.answers %}
-
-    <div class="panel panel-default col-sm-offset-1  col-sm-10">
-        <h3 class="row col-sm-offset-1">Answers: </h3>
-        {% for key, answer in poll.answers.items() %}
-        <div class="row col-sm-offset-2" style="margin-bottom: 5px">
-            <div style=" margin : 0 ; align-vertical : center" class="col-sm-6">{{answer.answer}} ({{answer.votes}})</div>
-            <a type="button" href="/polls/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote" style=" margin : 0" class="btn btn-success  btn-sm glyphicon glyphicon-plus "></a>
-            <a type="button" style=" margin : 0" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}"
-               class="  col-sm-offset-1 btn btn-danger btn-sm glyphicon glyphicon-remove navbar-btn ">REPORT</a>
-        </div>
-        {% endfor %}
-        <form method="POST" action = "/poll/{{poll.poll_id}}/answers/new" class="form-horizontal">
-            <div class="row" style=" padding-bottom : 20px">
-                <label class="control-label col-sm-2">Your answer:</label>
-                <input  style=" margin-right : 20px" class="col-sm-7"name="answer" id="answer" type="text" placeholder="Got a better idea?"></input>
-                <input class="col-sm-2" type="submit" value="Submit">
-            </div>
-
-        </form>
-    </div>
-</div>
-
-{% else %}
-<h2>no answers yet</h2>
-{% endif %}
-{% else %}
-<p>There are no questions</p>
-{% endif %}
-{%endfor%}
-{%else%}
-<h2>no polls yet</h2>
-{% endif %}
-
-
+{% for id, poll in polls.items() %}{% include "poll.html" with context %}{% endfor %}
 {% endblock %}
-
-
