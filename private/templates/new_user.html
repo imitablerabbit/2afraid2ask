@@ -1,22 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Register</h1>
 <form method=POST>
-    <label for=email>Email:</label>
-    <input id=email name=email type=email></input>
+    <h1>Register</h1>
+    
+    <div class="form-content">
+        <label for=email>Email:</label>
+        <input id=email name=email type=email></input>
 
-    <label for=password>Password:</label>
-    <input id=password name=password type=password></input>
+        <label for=password>Password:</label>
+        <input id=password name=password type=password></input>
 
-    <input type=submit></input>
+        <div class="inline-block-right">
+            <input class="blue" type=submit></input>
+        </div>
+
+        {% if success %}
+            <p><strong>Success:</strong> {{ success }}</p>
+        {% endif %}
+
+        {% if error %}
+            <p><strong>Error:</strong> {{ error }} </p>
+        {% endif %}
+    </div>
 </form>
 
-{% if success %}
-    <p><strong>Success:</strong> {{ success }}</p>
-{% endif %}
-
-{% if error %}
-    <p><strong>Error:</strong> {{ error }} </p>
-{% endif %}
 {% endblock %}

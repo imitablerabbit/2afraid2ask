@@ -1,5 +1,5 @@
 * {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -14,14 +14,6 @@ h1 {
     font-size: 2rem;
 }
 
-a.button {
-    border: solid thin black;
-    padding: 5px;
-    text-decoration: none;
-    color: black;
-}
-
-a.button:hover {
-    background: black;
-    color: white;
+.inline-block-right {
+    text-align: right;
 }

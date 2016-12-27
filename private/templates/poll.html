@@ -2,7 +2,9 @@
     
     <div class="poll-question">
         <h1>{{poll.question}}</h1>
-        <a class="button report" href="/poll/report/{{poll.poll_id}}">Report Question</a>
+        <div class="report-question">
+            <a class="button red" href="/poll/report/{{poll.poll_id}}">Report Question</a>
+        </div>
     </div>
 
     <div class="poll-answers">
@@ -11,8 +13,8 @@
             <div class="poll-answer">
                 <p>{{answer.answer}} ({{answer.votes}})</p><div class="buttons">
 
-                    <a class="button" href="/polls/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote">Vote</a>
-                    <a class="button" href="/polls/{{poll.poll_id}}/answers/report/{{answer.answer_id}}">Report</a>
+                    <a class="button blue" href="/polls/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote">Vote</a>
+                    <a class="button red" href="/polls/{{poll.poll_id}}/answers/report/{{answer.answer_id}}">Report</a>
                 </div>
             </div>
         {% endfor %}
@@ -23,9 +25,11 @@
     </div>
     
     <form class="poll-form" method="POST" action="/poll/{{poll.poll_id}}/answers/new">
-        <label>Your answer:</label>
-
-        <input name="answer" id="answer" type="text" placeholder="Got a better idea?"></input><input type="submit" value="Submit">
+        <label for="answer">Your answer:</label>
+        <div class="text-button">
+            <input class="text-button blue" name="answer" id="answer" type="text" placeholder="Got a better idea?"
+            ><input class="text-button blue" type="submit" value="Submit">
+        </div>
     </form>    
 
 </div>{% endif %}

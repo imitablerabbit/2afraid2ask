@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Login</h1>
 <form method="POST">
-    <label class="control-label col-sm-5" for=email>Email:</label>
-    <input id=email name=email type=email placeholder="Enter email"></input>
-            
-    <label class="control-label col-sm-5" for=password>Password:</label>
-    <input id=password name=password type=password placeholder="Enter Password"></input>
+    <h1>Login</h1>
+
+    <div class="form-content">
     
-    <input type="submit" value="Login">
+        <label class="" for=email>Email:</label>
+        <input class="blue" id=email name=email type=email placeholder="Enter email"></input>
+                
+        <label class="" for=password>Password:</label>
+        <input class="blue" id=password name=password type=password placeholder="Enter Password"></input>
+        
+        <div class="inline-block-right"> 
+            <input class="blue" type="submit" value="Login">
+            <a class="button blue" href="/user/new">Register here!</a>
+        </div>
+
+    </div>
 </form>
 
-<a href="/user/new">Register here!</a>
 {% endblock %}

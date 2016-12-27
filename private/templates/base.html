@@ -7,23 +7,23 @@
     <link rel="stylesheet" type="text/css" href="/static/poll.css">
     <link rel="stylesheet" type="text/css" href="/static/styles.css">
     <link rel="stylesheet" type="text/css" href="/static/form.css">
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:400,600" rel="stylesheet">
 </head>
 <body>
-    {% block titlenav %}
-    <nav>
-        <!-- Overlapping on lines to remove spaces -->
-        <h1>2Afraid2Ask</h1><ul>
-            <li><a href="/">Home</a></li><li>
-            <a href="/login">Login</a></li><li>
-            <a href="/my_account">My Account</a></li>
-        </ul>
-    </nav>
-    {% endblock %}
+    <div id="wrapper">
+        {% block titlenav %}
+        <nav><h1>2Afraid2Ask</h1><ul>
+                <li><a href="/">Home</a>
+                </li><li><a href="/login">Login</a>
+                </li><li><a href="/my_account">My Account</a></li>
+            </ul>
+        </nav>
+        {% endblock %}
 
-    <div id="main-content">
-    {% block content %}
-    {% endblock %}
+        <div id="main-content">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 
     {% block footer %}

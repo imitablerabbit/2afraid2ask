@@ -1,24 +1,154 @@
+form {
+    margin: 20px auto;
+    width: 40%;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
+}
+
+form h1 {
+    background: #5F7EC6;
+    padding: 20px;
+    color: white;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+}
+
+.form-content {
+    padding: 20px;
+}
+
 label {
     display: block;
     margin-bottom: 5px;
 }
 
+input {
+    width: 100%;
+    border: solid 1px black;
+}
+
+input[type=submit] {
+    width: initial;
+}
+
 input, a.button {
     font-family: 'Raleway', sans-serif;
     display: inline-block;
-    border: solid thin black;
-    padding: 5px;
+    padding: 8px 10px;
     font-size: 0.9em;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+}
+
+
+/*
+Red stylings for form elements
+*/
+.red {
+    background: #FF4C4C;
+    border-color: #FF4C4C;
+    color: white;
+}
+
+.red:hover {
+    background: #FF6B6B;
+    cursor: pointer;
+}
+
+.red:active {
+    background: #E92525;
+}
+
+/*
+Blue stylings
+*/
+.blue {
+    background: #5F7EC6;
+    border-color: #5F7EC6;
+    color: white;
+}
+
+.blue:hover {
+    background: #85A0DD;
+    cursor: pointer;
+}
+
+.blue:active {
+    background: #4061AD;
+}
+
+/*
+Green stylings
+*/
+.green {
+    background: #3DCD3D;
+    border-color: #3DCD3D;
+    color: white;
+}
+
+.green:hover {
+    background: #5CDD5C;
+    cursor: pointer;
+}
+
+.green:active {
+    background: #1DBB1D;
+}
+
+/*
+Other input stylings
+*/
+input[type=text],
+input[type=email],
+input[type=password] {
+    background: white;
+    color: black;
+    margin-bottom: 15px;
 }
 
 input[type=submit],
-input[type=button] {
-    background: white;
+input[type=button],
+a.button {
+    border-style: solid;
+    border-width: 1px;
+    text-decoration: none;
 }
 
-input[type=submit]:hover,
-input[type=button]:hover {
-    background: black;
-    cursor: pointer;
-    color: white;
+/*
+Text input and button
+*/
+.text-button {
+    display: flex;
+}
+
+.text-button input[type=submit] {
+    border-left: none;
+    width: auto;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    margin: auto;
+}
+
+.text-button input[type=text] {
+    width: 100%;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin: auto;
+}
+
+input[type=text]:hover,
+input[type=text]:active,
+input[type=email]:hover,
+input[type=email]:active,
+input[type=password]:hover,
+input[type=password]:active {
+    background: white;
+    cursor: text;
 }

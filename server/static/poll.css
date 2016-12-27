@@ -1,16 +1,19 @@
 .poll-list {
-    column-count: 3;
-    column-gap: 10px;
-    padding: 10px;
+    column-count: 1;
+    column-gap: 15px;
+    padding: 15px;
+    padding-bottom: 0px;
 }
 
 .poll-block {
     width: 100%;
     display: inline-block;
     vertical-align: top;
-    border: solid 3px red;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.4);
 }
 
 .poll-block:nth-of-type(3n - 2) {
@@ -22,16 +25,26 @@
 }
 
 .poll-question {
-    padding: 5%;
-    border-bottom: dashed 3px red;
+    padding: 20px;
+    background: #5F7EC6;
+    color: white;
+    border-bottom: dashed 2px #5F7EC6;
+    border-radius: 3px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
 }
 
-.poll-question .button.report {
+.report-question {
+    text-align: right;
+    margin-top: 20px;
 }
 
 .poll-answers {
-    padding: 5%;
-    border-bottom: dashed 3px red;
+    padding: 20px;
+    border-bottom: dashed 2px #5F7EC6;
 }
 
 .poll-answer {
@@ -52,7 +65,11 @@
 .poll-form {
     display: inline-block;
     width: 100%;
-    padding: 5%;
+    padding: 20px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    margin: 0px;
 }
 
 .poll-answer p {
@@ -66,12 +83,32 @@
     text-align: right;
 }
 
-.poll-form input[type=text] {
-    width: 80%;
+@media screen and (min-width: 800px) {
+    .poll-list {
+        column-count: 2;
+    }
 }
 
-.poll-form input[type=submit] {
-    width: 20%;
-    border-left: none;
+@media screen and (min-width: 1200px) {
+    .poll-list {
+        column-count: 3;
+    }
 }
 
+@media screen and (min-width: 1600px) {
+    .poll-list {
+        column-count: 4;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .poll-list {
+        column-count: 5;
+    }
+}
+
+@media screen and (min-width: 2400px) {
+    .poll-list {
+        column-count: 6;
+    }
+}

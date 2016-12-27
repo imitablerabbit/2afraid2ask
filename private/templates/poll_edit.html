@@ -2,6 +2,8 @@
 
 {% block content %}
 <form method=POST>
+	<h1>Edit Poll</h1>
+
 	<label for=question>Question:</label>
 	<input type=test id=question name=question>
 		{% if poll %}{{poll.question}}{% endif %}

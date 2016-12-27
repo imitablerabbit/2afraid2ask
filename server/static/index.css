@@ -1,57 +1,97 @@
-body {
+html, body {
     margin: 0px;
     padding: 0px;
+    height: 100%;
 }
 
 nav {
-    width: 100%;
+    position: fixed;
     display: inline-block;
-    margin: 0px;
-    padding: 0px;
-    border-bottom: solid 3px red;
+    z-index: 10;
+    left: 0px;
+    top: 0px;
+    height: 60px;
+    box-sizing: border-box;
+    width: 100%;
+    border-bottom: solid 3px #5F7EC6;
+    background: #5F7EC6;
+    color: white;
+    -webkit-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
+    box-shadow: 0px 5px 15px -2px rgba(0,0,0,0.25);
 }
 
 nav h1 {
     display: inline-block;
-    width: 50%;
-    margin: 0px;
-    padding: 10px;
     box-sizing: border-box;
     font-size: 2em;
+    height: 60px;
+    line-height: 60px;
+    margin-left: 15px;
 }
 
 nav ul {
     list-style: none;
-    display: inline-block;
-    width: 50%;
-    margin: 0px;
-    padding: 0px;
     text-align: right;
+    float: right;
+    height: 60px;
 }
 
 nav li {
     display: inline-block;
-    margin: 0px;
-    padding: 5px;
+}
+
+nav li > a {
+    display: inline-block;
+    color: white;
+    height: 60px;
+    line-height: 60px;
+    padding: 0px 15px;
+    text-decoration: none;
+    background: #5F7EC6;
+}
+
+nav li > a.active {
+    background: white;
+    color: #5F7EC6;
+}
+
+nav li > a:hover {
+    background: #85A0DD;
+    cursor: pointer;
+}
+
+nav li > a:active {
+    background: #4061AD;
 }
 
 #main-content {
     margin: auto;
     width: 100%;
+    margin-top: 60px;
+    display: inline-block;
+}
+
+#wrapper {
+    min-height: calc(100vh - 50px);
+    display: inline-block;
+    width: 100%;
 }
 
 footer {
-    width: 100%;
     display: inline-block;
-    border-top: solid thin black;
-    margin-top: 10px; 
+    width: 100%;
+    background: #5F7EC6;
+    color: white;
+    clear: both;
+    height: 50px;
 }
 
 footer p {
     display: inline-block;
     width: 100%;
-    margin: 0px;
-    padding: 10px;
+    height: 50px;
+    line-height: 50px;
     box-sizing: border-box;
     text-align: center;
 }
