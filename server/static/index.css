@@ -8,7 +8,7 @@ nav {
     display: inline-block;
     margin: 0px;
     padding: 0px;
-    border-bottom: solid thin black;
+    border-bottom: solid 3px red;
 }
 
 nav h1 {
@@ -17,6 +17,7 @@ nav h1 {
     margin: 0px;
     padding: 10px;
     box-sizing: border-box;
+    font-size: 2em;
 }
 
 nav ul {
@@ -36,7 +37,7 @@ nav li {
 
 #main-content {
     margin: auto;
-    width: 80%;
+    width: 100%;
 }
 
 footer {

@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for id, poll in polls.items() %}{% include "poll.html" with context %}{% endfor %}
+
+<div class="poll-list">
+    {% for id, poll in polls.items() %}{% include "poll.html" with context %}{% endfor %}
+</div>
+
 {% endblock %}

@@ -2,17 +2,15 @@
 
 {% block content %}
 <h1>Login</h1>
-<div>
-    <form method="POST">
-        <label class="control-label col-sm-5" for=email>Email:</label>
-        <input id=email name=email type=email placeholder="Enter email"></input>
-                
-        <label class="control-label col-sm-5" for=password>Password:</label>
-        <input id=password name=password type=password placeholder="Enter Password"></input>
-        
-        <input type="submit" value="Login">
-    </form>
+<form method="POST">
+    <label class="control-label col-sm-5" for=email>Email:</label>
+    <input id=email name=email type=email placeholder="Enter email"></input>
+            
+    <label class="control-label col-sm-5" for=password>Password:</label>
+    <input id=password name=password type=password placeholder="Enter Password"></input>
+    
+    <input type="submit" value="Login">
+</form>
 
-    <a href="/user/new"> Register here </a>
-</div>
+<a href="/user/new">Register here!</a>
 {% endblock %}

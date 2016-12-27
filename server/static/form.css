@@ -3,12 +3,12 @@ label {
     margin-bottom: 5px;
 }
 
-input {
-    box-sizing: border-box;
+input, a.button {
+    font-family: 'Raleway', sans-serif;
     display: inline-block;
     border: solid thin black;
     padding: 5px;
-    margin: 0px;
+    font-size: 0.9em;
 }
 
 input[type=submit],

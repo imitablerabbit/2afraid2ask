@@ -140,7 +140,7 @@ def poll_answer_report(poll_id, answer_id):
             
 
 @app.route("/poll/<int:poll_id>/answers/new", methods=["POST", "GET"])
-def poll_anwser_new(poll_id):
+def poll_answer_new(poll_id):
     if not is_logged_in():
         return redirect("/login")
     if request.method == "POST":
@@ -176,8 +176,8 @@ def poll_anwser_new(poll_id):
         user["answers"].append(answer)
         users_dict[user_id] = user
         users_lock.release()
-        return "Answer successfully added"
-
+        return redirect("/")
+        
 
 @app.route("/polls/<int:poll_id>")
 def poll_single(poll_id):
@@ -208,4 +208,4 @@ def poll_answer_vote(poll_id, answer_id):
     poll["answers"] = answers
     polls_dict[poll_id] = poll
     polls_lock.release()
-    return "Vote successful"
+    return redirect("/")

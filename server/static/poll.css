@@ -1,52 +1,77 @@
+.poll-list {
+    column-count: 3;
+    column-gap: 10px;
+    padding: 10px;
+}
+
 .poll-block {
-    width: 50%;
-    margin: 0px;
-    padding: 20px;
-    box-sizing: border-box;
+    width: 100%;
     display: inline-block;
     vertical-align: top;
+    border: solid 3px red;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.poll-block:nth-of-type(3n - 2) {
+    margin-right: 0;
+}
+
+.poll-block:nth-of-type(3n) {
+    margin-left: 0; 
+}
+
+.poll-question {
+    padding: 5%;
+    border-bottom: dashed 3px red;
+}
+
+.poll-question .button.report {
 }
 
 .poll-answers {
+    padding: 5%;
+    border-bottom: dashed 3px red;
 }
 
 .poll-answer {
     display: inline-block;
     width: 100%;
-    padding: 10px 0px;
-    border-bottom: thin dotted black;
+    padding: 5px 0px;
+    /*border-bottom: thin dotted black;*/
+}
+
+.poll-answer:first-of-type {
+    padding-top: 0px;
+}
+
+.poll-answer:last-of-type {
+    padding-bottom: 0px;
+}
+
+.poll-form {
+    display: inline-block;
+    width: 100%;
+    padding: 5%;
 }
 
 .poll-answer p {
     display: inline-block;
-    width: 50%;
-    margin: 0px;
-    padding: 0px;
+    width: 60%;
 }
 
 .poll-answer .buttons {
     display: inline-block;
-    width: 50%;
-    margin: 0px;
-    padding: 0px;
+    width: 40%;
     text-align: right;
-}
-
-.poll-form {
-    width: 100%;
-    padding: 10px 0px;
-    display: inline-block;
-    margin: 0px;
 }
 
 .poll-form input[type=text] {
     width: 80%;
-    margin: 0px;
 }
 
 .poll-form input[type=submit] {
     width: 20%;
-    margin: 0px;
     border-left: none;
 }
 
