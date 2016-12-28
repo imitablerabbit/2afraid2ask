@@ -216,7 +216,7 @@ def user_logout():
             sessions.remove(session)
             break
     sessions_lock.release()
-    return "Logged out"
+    return render_template("login.html", success="Successfully logged out!")
 
 
 @app.route("/my_account")
