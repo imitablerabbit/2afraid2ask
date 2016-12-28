@@ -1,29 +1,22 @@
  {
 	"poll_id": 3,
 	"user_id": 1,
-	"question": "How much caffeine do you need to stay awake 24 hours without feeling sleepy?",
+	"question": "Will Donald Trump make for a great president?",
 	"reports": 0,
 	"answers": {
 		"0": {
 			"answer_id": 0,
-			"answer": "1 can of monster",
+			"answer": "Yes",
 			"user_id": 0,
 			"votes": 7,
 			"reports": 0
 		},
 		"1": {
 			"answer_id": 1,
-			"answer": "100mg of caffeine",
+			"answer": "No",
 			"user_id": 1,
-			"votes": 3,
+			"votes": 10,
 			"reports": 1
-		},
-		"2": {
-			"answer_id": 2,
-			"answer": "1 caffeine molecule",
-			"user_id": 2,
-			"votes": 1,
-			"reports": 7
 		}
 	}
 }

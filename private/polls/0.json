@@ -10,6 +10,13 @@
 			"user_id": 0,
 			"votes": 7,
 			"reports": 0
+		},
+		"1": {
+			"answer_id": 2,
+			"answer": "No",
+			"user_id": 2,
+			"votes": 7,
+			"reports": 0
 		}
 	}
 }
