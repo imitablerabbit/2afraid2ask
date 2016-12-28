@@ -70,6 +70,8 @@ def poll_delete(poll_id):
         del polls_dict[poll_id]
         polls_lock.release()
         return "Poll successfully deleted"
+    poll_lock.release()
+    return "Could not delete poll"
 
 
 @app.route("/poll/edit/<int:poll_id>", methods=["POST", "GET"])
@@ -184,6 +186,7 @@ def poll_single(poll_id):
     polls_lock.acquire()
     poll = polls_dict.get(poll_id)
     if not poll:
+        polls_lock.release()
         return "Could not find the poll"
     polls_lock.release()
     return render_template("poll_single.html", poll=poll)
