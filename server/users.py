@@ -38,21 +38,14 @@ def is_logged_in():
     if 'session' in request.cookies:
         email, password_hash = get_session_cookie_details(request.cookies["session"])
         # Check if cookie is correct according to the sessions
-        print("Sessions", sessions)
-        print("Password_hash:", password_hash)
-        print("Email:", email)
         for session in sessions:
-            print(session['expires'])
             expires = datetime.strptime(session["expires"], datetime_format)
             now = datetime.now()
             if not email == session["email"]:
-                print("Wrong email")
                 return False                
             if not password_hash == session["password_hash"]:
-                print("Wrong password")
                 return False
             if not expires > now:
-                print("Already expired")
                 return False
             return True
     return False
@@ -62,8 +55,6 @@ def get_session_cookie_details(cookie):
     session_cookie = request.cookies["session"]
     password_hash = session_cookie[-60:]
     email = session_cookie[:len(session_cookie)-60]
-    print(password_hash)
-    print(email)
     return email, password_hash
 
 
@@ -137,7 +128,6 @@ def user_login():
         if not user:
             return render_template("login.html", error="Email address not found")
         password_hash = user["password_hash"].decode('utf-8')
-        print(password_hash)
         success = check_password_hash(password, password_hash)
         if not success:
             return render_template("login.html", error="Login credentials are incorrect")
@@ -167,22 +157,19 @@ def user_add():
         form = request.form
         email = form.get('email')
         if not email:
-            print("Incorrect user_add form, missing email.")
             error_string = "Error: Please enter an email"
             return render_template("new_user.html", error=error_string)
         # Check if email is already taken
         user = get_user_by_email(email)
         if user:
-            print("Attempted duplicate user creation")
             return render_template("new_user.html", error="An account with that email already exists")
         password = form.get('password')
         if not password:
-            print("Incorrect user_add form, missing password.")
             error_string = "Please enter a valid password"
             return render_template("new_user.html", error=error_string)
         create_user(email, password)
-        success_string = "Successfully Added"
-        return render_template("new_user.html", success=success_string)
+        success_string = "Successfully Registered"
+        return render_template("login.html", success=success_string)
     else: 
         # Todo add the form template here
         return render_template("new_user.html")
@@ -228,6 +215,7 @@ def user_logout():
         if session["email"] == user["email"]:
             sessions.remove(session)
             break
+    sessions_lock.release()
     return "Logged out"
 
 

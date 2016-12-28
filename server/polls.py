@@ -184,9 +184,9 @@ def poll_single(poll_id):
     polls_lock.acquire()
     poll = polls_dict.get(poll_id)
     if not poll:
-        polls_lock.release()
         return "Could not find the poll"
-    return render_template("poll.html", poll=poll)
+    polls_lock.release()
+    return render_template("poll_single.html", poll=poll)
 
 
 @app.route("/polls/<int:poll_id>/answers/<int:answer_id>/vote")

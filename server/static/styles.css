@@ -5,7 +5,8 @@
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4,
+h1 *, h2 *, h3 *, h4 * {
     font-family: 'Playfair Display', serif;
     font-style: normal;
 }
@@ -17,3 +18,18 @@ h1 {
 .inline-block-right {
     text-align: right;
 }
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.center-content {
+    width: 40%;
+    margin: auto;
+    margin-top: 20px;
+}
+

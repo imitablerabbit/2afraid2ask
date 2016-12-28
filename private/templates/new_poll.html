@@ -4,7 +4,18 @@
 <form method=post>
 	<h1>New Poll</h1>
 
-	<label for=question>Question:</label>
-	<input id=question name=question></input>
+	<div class="form-content">
+		<label for=question>Question:</label>
+		<input id=question name=question></input>
+
+
+        {% if success %}
+            <p class="success"><strong>Success:</strong> {{ success }}</p>
+        {% endif %}
+
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }} </p>
+        {% endif %}
+	</div>
 </form>
 {% endblock %}

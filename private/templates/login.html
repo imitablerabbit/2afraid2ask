@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method="POST">
+<form method="POST" action="/login">
     <h1>Login</h1>
 
     <div class="form-content">
@@ -13,9 +13,17 @@
         <input class="blue" id=password name=password type=password placeholder="Enter Password"></input>
         
         <div class="inline-block-right"> 
-            <input class="blue" type="submit" value="Login">
             <a class="button blue" href="/user/new">Register here!</a>
+            <input class="blue" type="submit" value="Login">
         </div>
+
+        {% if success %}
+            <p class="success"><strong>Success:</strong> {{ success }}</p>
+        {% endif %}
+
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{ error }} </p>
+        {% endif %}
 
     </div>
 </form>
