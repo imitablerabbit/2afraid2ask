@@ -88,6 +88,16 @@
     text-align: right;
 }
 
+@media screen and (max-width: 800px) {
+    .poll-answer p {
+        width: 50%;
+    }
+
+    .poll-answer .buttons {
+        width: 50%;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .poll-list {
         column-count: 2;
