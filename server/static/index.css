@@ -95,3 +95,13 @@ footer p {
     box-sizing: border-box;
     text-align: center;
 }
+
+@media screen and (max-width: 800px) {
+    nav h1 {
+        display: none;
+    }
+
+    nav {
+        text-align: center;
+    }
+}
