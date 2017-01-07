@@ -4,4 +4,4 @@ main will start the server when it is the file which is run in the python interp
 from server import app
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
