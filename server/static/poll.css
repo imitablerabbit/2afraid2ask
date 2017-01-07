@@ -1,4 +1,8 @@
 .poll-list {
+    -moz-column-count: 1;
+    -moz-column-gap: 15px;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 15px;
     column-count: 1;
     column-gap: 15px;
     padding: 15px;
@@ -100,30 +104,35 @@
 
 @media screen and (min-width: 800px) {
     .poll-list {
+        -moz-column-count: 2;
         column-count: 2;
     }
 }
 
 @media screen and (min-width: 1200px) {
     .poll-list {
+        -moz-column-count: 3;
         column-count: 3;
     }
 }
 
 @media screen and (min-width: 1600px) {
     .poll-list {
+        -moz-column-count: 4;
         column-count: 4;
     }
 }
 
 @media screen and (min-width: 2000px) {
     .poll-list {
+        -moz-column-count: 5;
         column-count: 5;
     }
 }
 
 @media screen and (min-width: 2400px) {
     .poll-list {
+        -moz-column-count: 6;
         column-count: 6;
     }
 }

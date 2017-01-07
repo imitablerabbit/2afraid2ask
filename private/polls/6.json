@@ -26,14 +26,14 @@
 			"reports": 7
 		},
 		"3": {
-			"answer_id": 2,
+			"answer_id": 3,
 			"answer": "C++",
 			"user_id": 2,
 			"votes": 5,
 			"reports": 7
 		},
 		"4": {
-			"answer_id": 2,
+			"answer_id": 4,
 			"answer": "Erlang",
 			"user_id": 2,
 			"votes": 9,
