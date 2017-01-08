@@ -115,10 +115,11 @@ def poll_report(poll_id):
         return "Poll not found"
     reports = poll["reports"]
     reports += 1
+    question = poll["question"]
     poll["reports"] = reports
     polls_dict[poll_id] = poll
     polls_lock.release()
-    return "Successfully reported"
+    return "Successfully reported poll: " + question
 
 
 @app.route("/poll/<int:poll_id>/answers/report/<int:answer_id>")
@@ -134,8 +135,9 @@ def poll_answer_report(poll_id, answer_id):
         polls_lock.release()
         return "answer could not be found"
     answer["reports"] += 1
+    answer_answer = answer["answer"]
     polls_lock.release()
-    return "Successfully reported answer"
+    return "Successfully reported answer: " + answer_answer
             
 
 @app.route("/poll/<int:poll_id>/answers/new", methods=["POST", "GET"])
