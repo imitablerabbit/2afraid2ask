@@ -1,7 +1,7 @@
 {% if poll.question %}<div class="poll-block">
     
     <div class="poll-question">
-        <h1><a href="/polls/{{poll.poll_id}}" class="poll-question-link">{{poll.question}}</a></h1>
+        <h1><a href="/poll/{{poll.poll_id}}" class="poll-question-link">{{poll.question}}</a></h1>
         <div class="report-question">
             <a class="button red" href="/poll/report/{{poll.poll_id}}">Report Question</a>
         </div>
@@ -13,8 +13,8 @@
             <div class="poll-answer">
                 <p>{{answer.answer}} ({{answer.votes}})</p><div class="buttons">
 
-                    <a class="button blue" href="/polls/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote">Vote</a>
-                    <a class="button red" href="/polls/{{poll.poll_id}}/answers/report/{{answer.answer_id}}">Report</a>
+                    <a class="button blue" href="/poll/{{poll.poll_id}}/answers/{{answer.answer_id}}/vote">Vote</a>
+                    <a class="button red" href="/poll/{{poll.poll_id}}/answers/report/{{answer.answer_id}}">Report</a>
                 </div>
             </div>
         {% endfor %}

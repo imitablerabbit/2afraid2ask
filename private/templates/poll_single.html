@@ -6,4 +6,12 @@
     {% include "poll.html" with context %}
 </div>
 
+{% if success %}
+    <p class="success"><strong>Success:</strong> {{ success }}</p>
+{% endif %}
+
+{% if error %}
+    <p class="error"><strong>Error:</strong> {{ error }} </p>
+{% endif %}
+
 {% endblock %}

@@ -40,7 +40,7 @@ def poll_new():
             "user_id": user["user_id"],
             "question": question,
             "reports": 0,
-            "answers": []
+            "answers": {}
         }
         polls_dict[poll_id] = poll
         polls_lock.release()
@@ -50,8 +50,8 @@ def poll_new():
         user["polls"] = polls # might be redundant?
         users_dict[user["user_id"]] = user
         users_lock.release()
-        return "Successfully created poll"
-    return render_template("new_poll.html") 
+        return redirect("/poll/"+str(poll_id))
+    return render_template("new_poll.html")
 
 
 @app.route("/poll/delete/<int:poll_id>")
@@ -84,7 +84,7 @@ def poll_edit(poll_id):
         if not is_logged_in():
             return redirect("/login")
         form = request.form
-        question= form.get("question")
+        question = form.get("question")
         if not question:
             return "The edited poll did not update the question"
         poll["question"] = question
@@ -125,18 +125,15 @@ def poll_report(poll_id):
 def poll_answer_report(poll_id, answer_id):
     polls_lock.acquire()
     poll = polls_dict.get(poll_id)
-    if not poll: 
+    if not poll:
         polls_lock.release()
         return "poll not found"
     answers = poll["answers"]
-    answer = answers.get(int(answer_id))
+    answer = answers.get(str(answer_id))
     if not answer:
         polls_lock.release()
         return "answer could not be found"
-    reports = answer["reports"]
-    reports += 1
-    answer["reports"] = reports
-    answers[answer_id] = answer
+    answer["reports"] += 1
     polls_lock.release()
     return "Successfully reported answer"
             
@@ -160,28 +157,28 @@ def poll_answer_new(poll_id):
         user_id = user["user_id"]
         answer_id = len(answers)
         answer = {
-            "answer_id": answer_id,
+            "answer_id": str(answer_id),
             "user_id": user_id,
             "answer": answer,
             "votes": 0,
             "reports": 0
         }
         answers[str(answer_id)] = answer
-        poll["answers"] = answers
-        polls_dict[poll_id] = poll
+        # poll["answers"] = answers
+        # polls_dict[poll_id] = poll
         polls_lock.release()
         answer = {
-            "poll_id": poll_id,
-            "answer_id": answer_id
+            "poll_id": str(poll_id),
+            "answer_id": str(answer_id)
         }
         users_lock.acquire()
         user["answers"].append(answer)
         users_dict[user_id] = user
         users_lock.release()
-        return redirect("/")
+        return redirect("/poll/"+str(poll_id))
         
 
-@app.route("/polls/<int:poll_id>")
+@app.route("/poll/<int:poll_id>")
 def poll_single(poll_id):
     polls_lock.acquire()
     poll = polls_dict.get(poll_id)
@@ -192,7 +189,7 @@ def poll_single(poll_id):
     return render_template("poll_single.html", poll=poll)
 
 
-@app.route("/polls/<int:poll_id>/answers/<int:answer_id>/vote")
+@app.route("/poll/<int:poll_id>/answers/<int:answer_id>/vote")
 def poll_answer_vote(poll_id, answer_id):
     polls_lock.acquire()
     poll = polls_dict.get(poll_id)
@@ -211,4 +208,4 @@ def poll_answer_vote(poll_id, answer_id):
     poll["answers"] = answers
     polls_dict[poll_id] = poll
     polls_lock.release()
-    return redirect("/")
+    return redirect("/poll/"+str(poll_id))

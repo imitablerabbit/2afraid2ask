@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form method=post>
+<form method="post" action="/poll/new">
 	<h1>New Poll</h1>
 
 	<div class="form-content">
-		<label for=question>Question:</label>
-		<input id=question name=question></input>
+        
+		<label for="question">Question:</label>
+		<input class="blue" id="question" name="question" type="text">
 
+        <div class="inline-block-right"> 
+            <input class="blue" type="submit">
+        </div>
 
         {% if success %}
             <p class="success"><strong>Success:</strong> {{ success }}</p>
